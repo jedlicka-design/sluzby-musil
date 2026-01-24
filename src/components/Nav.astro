@@ -1,26 +1,124 @@
 ---
+import Logo from "./Logo.astro";
+
+const currentPath = Astro.url.pathname;
+
 const navItems = [
-	{ name: 'Domů', href: '/' },
-	{ name: 'Kompostárna Krhov', href: '/kompostarny-krhov' },
-    { name: 'Kontejnerová doprava', href: '/kontejnerova-doprava' },
-    { name: 'Výkopové práce', href: '/vykopove-prace' },
-    { name: 'Drcení biomasy', href: '/drcene-biomasy' },
-    { name: 'O nás', href: '/o-nas' },
-	{ name: 'Kontakt', href: '/kontakt' },
+	{ name: "Domů", href: "/" },
+	{
+		name: "Služby",
+		href: "#",
+		children: [
+			{ name: "Kompostárna Krhov", href: "/kompostarny-krhov" },
+			{ name: "Kontejnerová doprava", href: "/kontejnerova-doprava" },
+			{ name: "Výkopové práce", href: "/vykopove-prace" },
+			{ name: "Drcení biomasy", href: "/drcene-biomasy" },
+		],
+	},
+	{ name: "O nás", href: "/o-nas" },
+	{ name: "Kontakt", href: "/kontakt" },
 ];
+
+interface Props {
+	transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
 ---
 
-<nav class="bg-slate-900 text-white p-4">
-	<div class="container mx-auto flex justify-between items-center">
-		<div class="text-xl font-bold">Jan Musil</div>
-		<ul class="flex space-x-6">
-			{navItems.map((item) => (
-				<li>
-					<a href={item.href} class="hover:text-amber-400 transition-colors">
-						{item.name}
-					</a>
-				</li>
-			))}
+<nav
+	class:list={[
+		"text-slate-900 p-4 z-50 w-full",
+		transparent
+			? "absolute top-0 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+			: "relative bg-white shadow-md",
+	]}
+>
+	<div class="container mx-auto flex items-center gap-12">
+		<a href="/" class="hover:opacity-80 transition-opacity block">
+			<Logo />
+		</a>
+
+		<!-- Desktop Menu -->
+		<ul class="flex space-x-6 items-center">
+			{
+				navItems.map((item) => {
+					const hasChildren =
+						item.children && item.children.length > 0;
+					// Check if any child is active to highlight the parent "Služby"
+					const isParentActive =
+						hasChildren &&
+						item.children.some(
+							(child) =>
+								child.href === currentPath ||
+								(child.href !== "/" &&
+									currentPath.startsWith(child.href)),
+						);
+
+					const isActive =
+						item.href === currentPath || isParentActive;
+
+					return (
+						<li class="relative group">
+							<a
+								href={item.href}
+								class:list={[
+									"transition-colors flex items-center gap-1 py-2",
+									isActive
+										? "text-amber-600 font-bold"
+										: "hover:text-amber-600",
+								]}
+							>
+								{item.name}
+								{hasChildren && (
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										class="h-4 w-4 transition-transform group-hover:rotate-180"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M19 9l-7 7-7-7"
+										/>
+									</svg>
+								)}
+							</a>
+
+							{hasChildren && (
+								<div class="absolute left-0 mt-0 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 pt-2">
+									<div class="bg-white rounded-lg shadow-xl overflow-hidden border border-slate-100">
+										{item.children.map((child) => {
+											const isChildActive =
+												child.href === currentPath ||
+												(child.href !== "/" &&
+													currentPath.startsWith(
+														child.href,
+													));
+											return (
+												<a
+													href={child.href}
+													class:list={[
+														"block px-4 py-3 text-sm transition-colors border-b border-slate-50 last:border-0",
+														isChildActive
+															? "bg-amber-50 text-amber-600 font-bold"
+															: "text-slate-700 hover:bg-slate-50 hover:text-amber-600",
+													]}
+												>
+													{child.name}
+												</a>
+											);
+										})}
+									</div>
+								</div>
+							)}
+						</li>
+					);
+				})
+			}
 		</ul>
 	</div>
 </nav>

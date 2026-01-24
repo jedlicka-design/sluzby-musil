@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CtaSection from "../components/CtaSection.astro";
+import { url } from "../utils/urls";
 ---
 
 <BaseLayout
@@ -12,7 +13,7 @@ import CtaSection from "../components/CtaSection.astro";
     <section class="relative bg-slate-900 text-white overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img
-                src="/images/excavator-hero.jpg"
+                src={url("/images/excavator-hero.jpg")}
                 alt="Výkopové práce minibagrem"
                 class="w-full h-full object-cover opacity-60"
             />
@@ -174,7 +175,7 @@ import CtaSection from "../components/CtaSection.astro";
                         zemědělskou sezonu.
                     </p>
                     <img
-                        src="/images/pos.svg"
+                        src={url("/images/pos.svg")}
                         alt="Podpora z programu rozvoje venkova"
                         class="mt-6 w-full max-w-md h-auto"
                     />

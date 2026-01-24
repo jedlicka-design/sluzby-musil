@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CtaSection from "../components/CtaSection.astro";
 ---
 
 <BaseLayout
@@ -26,14 +27,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 Profesionální zemní práce <br />
                 <span class="text-amber-500">minibagrem LiuGong</span>
             </h1>
-            <p class="text-xl md:text-2xl text-slate-200 max-w-2xl mb-8">
+            <p class="text-xl md:text-2xl text-slate-50 max-w-2xl mb-8">
                 Nabízíme komplexní výkopové a zemní práce. Díky kompaktním
                 rozměrům se dostaneme i do stísněných prostor, přitom zvládneme
                 i náročné úkoly.
             </p>
             <a
                 href="#kontakt"
-                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 px-8 rounded-lg transition-transform hover:scale-105 shadow-lg"
+                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 px-8 rounded-lg transition-transform hover:scale-105 shadow-lg uppercase tracking-wider"
             >
                 Poptat výkopové práce
             </a>
@@ -41,29 +42,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </section>
 
     <!-- Machine Specs Section -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row gap-12 items-center">
+    <section class="py-16 md:py-24">
+        <div class="container
+        mx-auto
+        px-4">
+            <div class="flex flex-col md:flex-row gap-24 items-center">
                 <div class="w-full md:w-1/2">
-                    <div
-                        class="relative bg-slate-100 rounded-2xl p-8 border border-slate-200 shadow-xl overflow-hidden"
-                    >
-                        <div
-                            class="absolute top-0 right-0 p-4 bg-amber-500 rounded-bl-2xl"
-                        >
-                            <span class="font-bold text-slate-900"
-                                >Náš stroj</span
-                            >
-                        </div>
+                    <div class="bg-slate-100 p-16">
                         <h2 class="text-3xl font-bold mb-6 text-slate-900">
-                            LiuGong 9035E
+                            Parametry minibagru
                         </h2>
                         <ul class="space-y-4">
                             <li
-                                class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100 transition-colors hover:border-amber-300"
+                                class="flex items-center gap-4 py-4 border-b border-slate-300"
                             >
                                 <div
-                                    class="p-2 bg-amber-100 text-amber-600 rounded-full"
+                                    class="p-2 bg-slate-900 text-amber-300 rounded-full"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -91,10 +85,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                                 </div>
                             </li>
                             <li
-                                class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100 transition-colors hover:border-amber-300"
+                                class="flex items-center gap-4 py-4 border-b border-slate-200"
                             >
                                 <div
-                                    class="p-2 bg-amber-100 text-amber-600 rounded-full"
+                                    class="p-2 bg-slate-900 text-amber-300 rounded-full"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -121,11 +115,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                                     >
                                 </div>
                             </li>
-                            <li
-                                class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-slate-100 transition-colors hover:border-amber-300"
-                            >
+                            <li class="flex items-start gap-4">
                                 <div
-                                    class="p-2 bg-amber-100 text-amber-600 rounded-full"
+                                    class="p-2 bg-slate-800 text-amber-300 rounded-full mt-1"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -142,24 +134,51 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                                         ></path>
                                     </svg>
                                 </div>
-                                <div>
-                                    <span class="block text-sm text-slate-500"
+                                <div class="w-full">
+                                    <span
+                                        class="block text-sm text-slate-500 mb-2"
                                         >Příslušenství</span
                                     >
-                                    <span
-                                        class="block text-lg font-bold text-slate-900"
-                                        >Naklápěcí hlava</span
-                                    >
+                                    <div class="space-y-2 text-slate-900">
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-bold"
+                                                >Naklápěcí hlava</span
+                                            >
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-bold"
+                                                >Zubová lopata 300 mm</span
+                                            >
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-bold"
+                                                >Zubová lopata 500 mm
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-bold"
+                                                >Pevná svahová lopata 1500 mm
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="w-full md:w-1/2 text-slate-700">
-                    <h3 class="text-2xl font-bold text-slate-900 mb-6">
-                        Efektivita a preciznost
-                    </h3>
                     <p class="mb-4 leading-relaxed">
+                        Pořízením hydraulického pásového rypadla pro stavební
+                        činnost a zemní práce dochází k rozšíření a zkvalitnění
+                        nabízených služeb pro zákazníky a zhodnocení času mimo
+                        zemědělskou sezonu.
+                    </p>
+                    <img
+                        src="/images/pos.svg"
+                        alt="Podpora z programu rozvoje venkova"
+                        class="mt-6 w-full max-w-md h-auto"
+                    />
+                    <!-- <p class="mb-4 leading-relaxed">
                         Pro naše výkopové práce využíváme moderní pásový
                         minibagr <strong>LiuGong 9035E</strong>. Tento stroj
                         kombinuje vysoký výkon s kompaktními rozměry, což nám
@@ -170,74 +189,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         Díky naklápěcí hlavě a variabilitě lžic jsme schopni
                         realizovat precizní terénní úpravy, výkopy inženýrských
                         sítí i přípravu podloží pro stavby.
-                    </p>
-
-                    <h4
-                        class="font-bold text-lg mb-4 text-slate-900 border-b border-amber-200 pb-2 inline-block"
-                    >
-                        Dostupné příslušenství:
-                    </h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-2 h-2 bg-amber-500 rounded-full">
-                            </div>
-                            <span
-                                >Zubová lopata <strong class="text-slate-900"
-                                    >300 mm</strong
-                                ></span
-                            >
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-2 h-2 bg-amber-500 rounded-full">
-                            </div>
-                            <span
-                                >Zubová lopata <strong class="text-slate-900"
-                                    >500 mm</strong
-                                ></span
-                            >
-                        </div>
-                        <div
-                            class="flex items-center gap-3 col-span-1 sm:col-span-2"
-                        >
-                            <div class="w-2 h-2 bg-amber-500 rounded-full">
-                            </div>
-                            <span
-                                >Pevná svahová lopata <strong
-                                    class="text-slate-900">1500 mm</strong
-                                ></span
-                            >
-                        </div>
-                    </div>
+                    </p> -->
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section id="kontakt" class="py-20 bg-slate-900 text-white text-center">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                Máte zájem o naše služby?
-            </h2>
-            <p class="text-xl text-slate-300 mb-10">
-                Kontaktujte nás pro nezávaznou konzultaci a kalkulaci vašeho
-                projektu. Jsme připraveni vyřešit vaše požadavky rychle a
-                kvalitně.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a
-                    href="/kontakt"
-                    class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 px-10 rounded-lg transition-all hover:scale-105"
-                >
-                    Přejít na kontakty
-                </a>
-                <a
-                    href="tel:+420739035661"
-                    class="bg-transparent border-2 border-slate-600 hover:border-white text-white font-bold py-4 px-10 rounded-lg transition-all hover:bg-slate-800"
-                >
-                    Zavolat ihned
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- CTA Section -->
+    <CtaSection />
 </BaseLayout>

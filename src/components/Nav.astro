@@ -1,0 +1,26 @@
+---
+const navItems = [
+	{ name: 'Domů', href: '/' },
+	{ name: 'Kompostárna Krhov', href: '/kompostarny-krhov' },
+    { name: 'Kontejnerová doprava', href: '/kontejnerova-doprava' },
+    { name: 'Výkopové práce', href: '/vykopove-prace' },
+    { name: 'Drcení biomasy', href: '/drcene-biomasy' },
+    { name: 'O nás', href: '/o-nas' },
+	{ name: 'Kontakt', href: '/kontakt' },
+];
+---
+
+<nav class="bg-slate-900 text-white p-4">
+	<div class="container mx-auto flex justify-between items-center">
+		<div class="text-xl font-bold">Jan Musil</div>
+		<ul class="flex space-x-6">
+			{navItems.map((item) => (
+				<li>
+					<a href={item.href} class="hover:text-amber-400 transition-colors">
+						{item.name}
+					</a>
+				</li>
+			))}
+		</ul>
+	</div>
+</nav>

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Jan Musil | Úvodní stránka">
+	<div class="py-12 text-center">
+		<h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6">
+			Vítejte na našem novém webu
+		</h1>
+		<p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+			Toto je ukázková stránka postavená na Astro a Tailwind CSS. 
+			Všechny texty jsou zatím pouze placeholdery připravené pro váš obsah.
+		</p>
+		<div class="flex justify-center gap-4">
+			<a href="/sluzby" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-lg transition-all">
+				Naše služby
+			</a>
+			<a href="/kontakt" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 px-8 rounded-lg transition-all">
+				Kontaktujte nás
+			</a>
+		</div>
+	</div>
+
+	<section class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+		<div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100">
+			<h2 class="text-xl font-bold mb-3 text-slate-800">Služba 1</h2>
+			<p class="text-slate-600">Popis první nabízené služby. Zde bude podrobnější text o tom, co děláte.</p>
+		</div>
+		<div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100">
+			<h2 class="text-xl font-bold mb-3 text-slate-800">Služba 2</h2>
+			<p class="text-slate-600">Popis druhé nabízené služby. Každý blok může mít svou vlastní ikonu a detaily.</p>
+		</div>
+		<div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100">
+			<h2 class="text-xl font-bold mb-3 text-slate-800">Služba 3</h2>
+			<p class="text-slate-600">Popis třetí nabízené služby. Astro umožňuje snadné komponentové složení.</p>
+		</div>
+	</section>
+</BaseLayout>

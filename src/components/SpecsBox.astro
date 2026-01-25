@@ -1,0 +1,64 @@
+---
+interface Spec {
+    label: string;
+    value?: string;
+    icon: string;
+    items?: string[];
+}
+
+interface Props {
+    title: string;
+    specs: Spec[];
+}
+
+const { title, specs } = Astro.props;
+---
+
+<div class="bg-slate-100 p-8 md:p-16 rounded-2xl">
+    <h2 class="text-3xl font-bold mb-8 text-slate-900">
+        {title}
+    </h2>
+    <ul class="space-y-6">
+        {
+            specs.map((spec) => (
+                <li class="flex items-start gap-4 py-4 border-b border-slate-300 last:border-0">
+                    <div class="p-3 bg-slate-900 text-amber-300 rounded-full shrink-0 mt-1">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d={spec.icon}
+                            />
+                        </svg>
+                    </div>
+                    <div class="w-full">
+                        <span class="block text-sm text-slate-500 uppercase tracking-wider font-semibold mb-1">
+                            {spec.label}
+                        </span>
+                        {spec.value && (
+                            <span class="block text-xl font-bold text-slate-900">
+                                {spec.value}
+                            </span>
+                        )}
+                        {spec.items && (
+                            <div class="space-y-2 mt-2 text-slate-900">
+                                {spec.items.map((item) => (
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-bold">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </li>
+            ))
+        }
+    </ul>
+</div>

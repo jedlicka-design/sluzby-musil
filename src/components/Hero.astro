@@ -5,9 +5,10 @@ interface Props {
     image: string;
     imageAlt: string;
     textAlign?: "left" | "center";
+    compact?: boolean;
 }
 
-const { image, imageAlt, textAlign = "left" } = Astro.props;
+const { image, imageAlt, textAlign = "left", compact = false } = Astro.props;
 
 const alignmentClasses =
     textAlign === "center" ? "text-center" : "text-center md:text-left";
@@ -35,7 +36,7 @@ const actionsAlignment =
     </div>
 
     <div
-        class={`container mx-auto px-4 py-32 md:py-48 relative z-10 ${alignmentClasses}`}
+        class={`container mx-auto px-4 ${compact ? "pt-8 pb-16 md:pt-10 md:pb-24" : "py-24 md:py-32"} relative z-10 ${alignmentClasses}`}
     >
         <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
             <slot name="title" />

@@ -43,42 +43,35 @@ const services = [
 <BaseLayout
 	title="Jan Musil - Služby | Profesionální služby v oblasti dopravy a odpadů"
 	fullWidth={true}
-	transparentNav={true}
 >
-	<!-- Hero Section -->
-	<Hero
-		image="/images/excavator-hero.jpg"
-		imageAlt="Služby Musil - Technika v akci"
-	>
-		<Fragment slot="title">
-			Profesionální služby <br />
-			<span class="text-amber-500">pro vaše projekty</span>
-		</Fragment>
-		<Fragment slot="subtitle">
-			Od dopravy a zemních prací až po ekologické zpracování bioodpadu.
-			Jsme rodinná firma s tradicí a moderní technikou na Blanensku.
-		</Fragment>
-		<Fragment slot="actions">
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-12 max-w-5xl mx-auto md:mx-0">
+	<!-- Simple Hero Section (Experiment) -->
+	<section class="relative bg-amber-100 pt-8 pb-24 md:pt-12 md:pb-40 overflow-hidden border-b border-amber-200">
+		<div class="container mx-auto px-4 relative z-10 text-center">
+			<h1 class="text-4xl md:text-7xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
+				Profesionální služby <br />
+				<span class="text-amber-600">pro vaše projekty</span>
+			</h1>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-16 max-w-5xl mx-auto">
 				{services.map((service) => (
 					<a 
 						href={url(service.href)}
-						class="group relative h-48 md:h-64 rounded-3xl overflow-hidden shadow-2xl transition-all hover:scale-[1.02]"
+						class="group relative h-48 md:h-64 rounded-3xl overflow-hidden shadow-xl transition-all hover:scale-[1.02] bg-white border border-amber-200"
 					>
 						<!-- Card Background Image -->
 						<img 
 							src={url(service.image)} 
 							alt={service.title} 
-							class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+							class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
 						/>
 						<!-- Gradient Overlay -->
-						<div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent group-hover:from-amber-600/80 transition-colors duration-500"></div>
+						<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent group-hover:from-amber-600/70 transition-colors duration-500"></div>
 						
 						<!-- Card Content -->
-						<div class="absolute inset-0 p-6 flex flex-col justify-end">
-							<span class={`inline-block w-8 h-1 mb-3 rounded-full transition-all duration-500 group-hover:w-16 ${service.color.replace('bg-', 'bg-')}`}></span>
-							<h3 class="text-xl md:text-2xl font-bold text-white mb-2">{service.title}</h3>
-							<div class="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">
+						<div class="absolute inset-0 p-8 flex flex-col justify-end text-left">
+							<span class={`inline-block w-10 h-1.5 mb-4 rounded-full transition-all duration-500 group-hover:w-20 ${service.color}`}></span>
+							<h3 class="text-2xl md:text-3xl font-bold text-white mb-2 transform transition-transform group-hover:-translate-y-1">{service.title}</h3>
+							<div class="flex items-center gap-2 text-white/90 group-hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">
 								Zjistit více
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -88,8 +81,12 @@ const services = [
 					</a>
 				))}
 			</div>
-		</Fragment>
-	</Hero>
+		</div>
+		
+		<!-- Decorative blobs -->
+		<div class="absolute -top-24 -left-24 w-96 h-96 bg-amber-200/50 rounded-full blur-3xl -z-0"></div>
+		<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-200/50 rounded-full blur-3xl -z-0"></div>
+	</section>
 
 	<!-- Why Us Section -->
 	<section class="py-24 bg-white">

@@ -1,0 +1,255 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import CtaSection from "../components/CtaSection.astro";
+import { url } from "../utils/urls";
+
+const services = [
+    {
+        title: "Kompostárna Krhov",
+        description:
+            "Provoz certifikované kompostárny, prodej substrátů a likvidace bioodpadu.",
+    },
+    {
+        title: "Kontejnerová doprava",
+        description:
+            "Přistavení kontejnerů na sutě a odpady vozem Tatra Phoenix 6x6.",
+    },
+    {
+        title: "Výkopové práce",
+        description:
+            "Profesionální zemní a výkopové práce moderním minibagrem.",
+    },
+    {
+        title: "Drcení biomasy",
+        description: "Vysokovýkonné drcení dřeva a bioodpadu mobilním drtičem.",
+    },
+];
+---
+
+<BaseLayout
+    title="O nás | Služby Musil - Rodinná tradice a profesionální služby"
+    fullWidth={true}
+    transparentNav={true}
+>
+    <!-- Hero Section -->
+    <Hero
+        image="/images/o-nas/zne.jpg"
+        imageAlt="Služby Musil - Zemědělské práce v okolí Drnovic"
+    >
+        <Fragment slot="title">
+            Rodinná tradice <br />
+            <span class="text-amber-500">z regionu Blanenska</span>
+        </Fragment>
+        <Fragment slot="subtitle">
+            Jsme firma Služby Musil. Od zemědělství jsme se postupně vypracovali
+            k poskytování komplexních služeb v oblasti odpadového hospodářství,
+            dopravy a zemních prací.
+        </Fragment>
+    </Hero>
+
+    <!-- Intro / Overview Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2
+                    class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6"
+                >
+                    Kdo jsme a co děláme
+                </h2>
+                <p class="text-xl text-slate-600 leading-relaxed">
+                    Naše podnikání stojí na poctivé práci, kvalitní technice a
+                    osobním přístupu. Každou zakázku, ať už jde o dovoz tuny
+                    písku nebo drcení stovek kubíků biomasy, řešíme s maximálním
+                    nasazením.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {
+                    services.map((service) => (
+                        <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 group">
+                            <div class="w-12 h-1 bg-amber-500 mb-6 group-hover:w-full transition-all duration-500" />
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">
+                                {service.title}
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                {service.description}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Agriculture Section -->
+    <section class="py-24 bg-slate-50 overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Text Left -->
+                <div class="w-full lg:w-1/2 lg:order-1">
+                    <h2
+                        class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 uppercase tracking-tight"
+                    >
+                        Zemědělství jako <br />
+                        <span class="text-amber-600">pevný základ</span>
+                    </h2>
+                    <div
+                        class="space-y-6 text-lg text-slate-700 leading-relaxed"
+                    >
+                        <p>
+                            Naše kořeny sahají hluboko do půdy. Kromě stavebních
+                            a dopravních služeb se aktivně věnujeme zemědělství.
+                            Obhospodařujeme desítky hektarů polí v malebném
+                            okolí Drnovic.
+                        </p>
+                        <p>
+                            Známe hodnotu půdy a cyklus přírody. Tato zkušenost
+                            nás dovedla k šetrnému přístupu k životnímu
+                            prostředí, který aplikujeme i v našich ostatních
+                            službách, jako je právě zpracování bioodpadu.
+                        </p>
+                    </div>
+                </div>
+                <!-- Image Right -->
+                <div class="w-full lg:w-1/2 lg:order-2">
+                    <div class="relative">
+                        <div
+                            class="absolute -top-10 -right-10 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl"
+                        >
+                        </div>
+                        <img
+                            src={url("/images/o-nas/zne.jpg")}
+                            alt="Práce na polích"
+                            class="rounded-3xl shadow-2xl relative z-10 w-full h-auto object-cover aspect-video"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kompostarna Built Section -->
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Image Left -->
+                <div class="w-full lg:w-1/2 lg:order-1">
+                    <div class="relative">
+                        <div
+                            class="absolute -bottom-10 -left-10 w-40 h-40 bg-green-500/10 rounded-full blur-3xl"
+                        >
+                        </div>
+                        <img
+                            src={url("/images/o-nas/kompostarna.jpg")}
+                            alt="Kompostárna Krhov"
+                            class="rounded-3xl shadow-2xl relative z-10 w-full h-auto object-cover aspect-video"
+                        />
+                    </div>
+                </div>
+                <!-- Text Right -->
+                <div class="w-full lg:w-1/2 lg:order-2">
+                    <h2
+                        class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 uppercase tracking-tight"
+                    >
+                        Od pole k <br />
+                        <span class="text-green-600">kompostárně</span>
+                    </h2>
+                    <div
+                        class="space-y-6 text-lg text-slate-700 leading-relaxed"
+                    >
+                        <p>
+                            V roce 2021 jsme úspěšně realizovali náš velký
+                            projekt – vlastní certifikovanou kompostárnu v
+                            Krhově. Byl to logický krok, jak spojit naše
+                            zkušenosti ze zemědělství s potřebou regionu řešit
+                            likvidaci bioodpadu.
+                        </p>
+                        <p>
+                            Dnes zde vyrábíme prvotřídní zahradní kompost a
+                            substráty, které se vrací zpět na zahrady a pole v
+                            celém regionu. Uzavíráme tak koloběh živin v přírodě
+                            zcela ekologickou cestou.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Family Section -->
+    <section class="py-24 bg-slate-900 text-white overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <!-- Text Left -->
+                <div class="w-full lg:w-1/2 lg:order-1">
+                    <span
+                        class="text-amber-500 font-bold uppercase tracking-widest text-sm block mb-4"
+                        >Jsme v tom společně</span
+                    >
+                    <h2
+                        class="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
+                    >
+                        Rodina <br /> Musilových
+                    </h2>
+                    <div
+                        class="space-y-6 text-xl text-slate-400 leading-relaxed"
+                    >
+                        <p>
+                            Jsme rodinná firma v pravém slova smyslu. Společně
+                            se podílíme na chodu celého hospodářství i
+                            technických služeb. Věříme, že právě díky rodinným
+                            poutům dokážeme garantovat poctivost a spolehlivost,
+                            na které si zakládáme.
+                        </p>
+                        <p>
+                            Když zavoláte nám, nemluvíte s operátorem v
+                            anonymním centru, ale přímo s námi. Známe své
+                            stroje, známe naše pole a především známe potřeby
+                            naší rodiny a našich zákazníků na Blanensku.
+                        </p>
+                    </div>
+                    <div class="mt-12 flex gap-12">
+                        <div>
+                            <div class="text-3xl font-bold text-white mb-2">
+                                20+
+                            </div>
+                            <div
+                                class="text-sm text-slate-500 uppercase tracking-wider"
+                            >
+                                Let zkušeností
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white mb-2">
+                                100%
+                            </div>
+                            <div
+                                class="text-sm text-slate-500 uppercase tracking-wider"
+                            >
+                                Rodinná firma
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Right -->
+                <div class="w-full lg:w-1/2 lg:order-2">
+                    <div class="relative">
+                        <div
+                            class="absolute -bottom-10 -right-10 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl"
+                        >
+                        </div>
+                        <img
+                            src={url("/images/o-nas/rodina.jpg")}
+                            alt="Rodina Musilových"
+                            class="rounded-[2rem] shadow-2xl border-4 border-slate-800 relative z-10 w-full h-auto object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <CtaSection />
+</BaseLayout>

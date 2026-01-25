@@ -1,0 +1,189 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CtaSection from "../components/CtaSection.astro";
+import Hero from "../components/Hero.astro";
+import SpecsBox from "../components/SpecsBox.astro";
+import { url } from "../utils/urls";
+
+const specs = [
+    {
+        label: "Typ stroje",
+        value: "Willibald SHARK EP 5500",
+        icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z",
+    },
+    {
+        label: "Výkon motoru",
+        value: "383 kW (520 HP)",
+        icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    },
+    {
+        label: "Hmotnost stroje",
+        value: "cca 19 000 kg",
+        icon: "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3",
+    },
+    {
+        label: "Kapacita drcení",
+        value: "až 250 m³/h",
+        icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
+    },
+];
+
+const galleryImages = [
+    {
+        src: "/images/drceni-biomasy/1.jpg",
+        alt: "Willibald SHARK EP 5500 v akci",
+    },
+    { src: "/images/drceni-biomasy/2.jpg", alt: "Detail drcení materiálu" },
+    { src: "/images/drceni-biomasy/3.jpg", alt: "Drtič na staveništi" },
+    {
+        src: "/images/drceni-biomasy/4.jpg",
+        alt: "Pohled na stroj Tatra s drtičem",
+    },
+    { src: "/images/drceni-biomasy/5.jpg", alt: "Hotová dřevní štěpka" },
+];
+---
+
+<BaseLayout
+    title="Jan Musil - Drcení biomasy | Rychloběžný drtič Willibald SHARK EP 5500"
+    fullWidth={true}
+    transparentNav={true}
+>
+    <Hero
+        image="/images/drceni-biomasy/4.jpg"
+        imageAlt="Drcení biomasy drtičem Willibald"
+    >
+        <Fragment slot="title">
+            Drcení biomasy <br />
+            <span class="text-amber-500">vysokovýkonným drtičem</span>
+        </Fragment>
+        <Fragment slot="subtitle">
+            Nabízíme profesionální drcení a objemovou redukci bioodpadu, dřeva a
+            biomasy pomocí rychloběžného drtiče Willibald SHARK EP 5500.
+        </Fragment>
+        <Fragment slot="actions">
+            <a
+                href="#kontakt"
+                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 px-8 rounded-lg transition-transform hover:scale-105 shadow-lg uppercase tracking-wider text-sm"
+            >
+                Poptat drcení
+            </a>
+        </Fragment>
+    </Hero>
+
+    <!-- Machine Specs Section -->
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-24 items-center">
+                <div class="w-full md:w-1/2">
+                    <SpecsBox title="Parametry drtiče" specs={specs} />
+                </div>
+                <div class="w-full md:w-1/2 text-slate-700">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900">
+                        Efektivní zpracování organického odpadu
+                    </h2>
+                    <p class="mb-6 leading-relaxed text-lg">
+                        Náš rychloběžný drtič <strong
+                            >Willibald SHARK EP 5500</strong
+                        > představuje špičku v oboru zpracování biomasy. Díky vysokému
+                        výkonu motoru a variabilitě drticích sít jsme schopni zpracovat
+                        širokou škálu materiálů na požadovanou frakci.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 text-amber-500">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p>Drcení komunálního bioodpadu, trávy a listí</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 text-amber-500">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p>Zpracování kmenů, větví a dřevního dopadu</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 text-amber-500">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p>Výroba palivové štěpky a kompostových frakcí</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 text-amber-500">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p>
+                                Objemová redukce pro snížení nákladů na dopravu
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {
+                    galleryImages.map((img) => (
+                        <div class="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] bg-slate-200">
+                            <img
+                                src={url(img.src)}
+                                alt={img.alt}
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <p class="text-white font-bold text-lg">
+                                    {img.alt}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <CtaSection />
+</BaseLayout>

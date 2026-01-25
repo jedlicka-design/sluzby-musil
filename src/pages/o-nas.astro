@@ -9,20 +9,28 @@ const services = [
         title: "Kompostárna Krhov",
         description:
             "Provoz certifikované kompostárny, prodej substrátů a likvidace bioodpadu.",
+        image: "/images/kompostarna-hero.webp",
+        href: "/kompostarna-krhov",
     },
     {
         title: "Kontejnerová doprava",
         description:
             "Přistavení kontejnerů na sutě a odpady vozem Tatra Phoenix 6x6.",
+        image: "/images/kontejnerova-doprava-hero.jpg",
+        href: "/kontejnerova-doprava",
     },
     {
         title: "Výkopové práce",
         description:
             "Profesionální zemní a výkopové práce moderním minibagrem.",
+        image: "/images/excavator-hero.jpg",
+        href: "/vykopove-prace",
     },
     {
         title: "Drcení biomasy",
         description: "Vysokovýkonné drcení dřeva a bioodpadu mobilním drtičem.",
+        image: "/images/drceni-biomasy/4.jpg",
+        href: "/drceni-biomasy",
     },
 ];
 ---
@@ -68,15 +76,43 @@ const services = [
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {
                     services.map((service) => (
-                        <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 group">
-                            <div class="w-12 h-1 bg-amber-500 mb-6 group-hover:w-full transition-all duration-500" />
-                            <h3 class="text-xl font-bold text-slate-900 mb-4">
-                                {service.title}
-                            </h3>
-                            <p class="text-slate-600 leading-relaxed">
-                                {service.description}
-                            </p>
-                        </div>
+                        <a
+                            href={url(service.href)}
+                            class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col no-underline text-inherit"
+                        >
+                            <div class="h-48 overflow-hidden">
+                                <img
+                                    src={url(service.image)}
+                                    alt={service.title}
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
+                            </div>
+                            <div class="p-8 flex-grow flex flex-col">
+                                <h3 class="text-xl font-bold text-slate-900 mb-4">
+                                    {service.title}
+                                </h3>
+                                <p class="text-slate-600 leading-relaxed text-sm mb-8 flex-grow">
+                                    {service.description}
+                                </p>
+                                <div class="mt-auto flex items-center gap-2 text-amber-600 font-bold uppercase tracking-wider text-xs group-hover:gap-3 transition-all">
+                                    Přejít na službu
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
                     ))
                 }
             </div>
@@ -178,23 +214,22 @@ const services = [
         </div>
     </section>
 
-    <!-- Family Section -->
-    <section class="py-24 bg-slate-900 text-white overflow-hidden">
+    <section class="py-24 bg-amber-100 text-slate-900 overflow-hidden">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center gap-20">
                 <!-- Text Left -->
                 <div class="w-full lg:w-1/2 lg:order-1">
                     <span
-                        class="text-amber-500 font-bold uppercase tracking-widest text-sm block mb-4"
+                        class="text-amber-900 font-bold uppercase tracking-widest text-sm block mb-4"
                         >Jsme v tom společně</span
                     >
                     <h2
-                        class="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
+                        class="text-4xl md:text-6xl font-extrabold mb-8 leading-tight text-slate-950"
                     >
                         Rodina <br /> Musilových
                     </h2>
                     <div
-                        class="space-y-6 text-xl text-slate-400 leading-relaxed"
+                        class="space-y-6 text-xl text-slate-800 leading-relaxed font-medium"
                     >
                         <p>
                             Jsme rodinná firma v pravém slova smyslu. Společně
@@ -212,21 +247,21 @@ const services = [
                     </div>
                     <div class="mt-12 flex gap-12">
                         <div>
-                            <div class="text-3xl font-bold text-white mb-2">
+                            <div class="text-3xl font-bold text-slate-950 mb-2">
                                 20+
                             </div>
                             <div
-                                class="text-sm text-slate-500 uppercase tracking-wider"
+                                class="text-sm text-amber-900 uppercase tracking-wider font-bold"
                             >
                                 Let zkušeností
                             </div>
                         </div>
                         <div>
-                            <div class="text-3xl font-bold text-white mb-2">
+                            <div class="text-3xl font-bold text-slate-950 mb-2">
                                 100%
                             </div>
                             <div
-                                class="text-sm text-slate-500 uppercase tracking-wider"
+                                class="text-sm text-amber-900 uppercase tracking-wider font-bold"
                             >
                                 Rodinná firma
                             </div>
@@ -237,13 +272,13 @@ const services = [
                 <div class="w-full lg:w-1/2 lg:order-2">
                     <div class="relative">
                         <div
-                            class="absolute -bottom-10 -right-10 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl"
+                            class="absolute -bottom-10 -right-10 w-64 h-64 bg-white/20 rounded-full blur-3xl"
                         >
                         </div>
                         <img
                             src={url("/images/o-nas/rodina.jpg")}
                             alt="Rodina Musilových"
-                            class="rounded-[2rem] shadow-2xl border-4 border-slate-800 relative z-10 w-full h-auto object-cover"
+                            class="rounded-[2rem] shadow-2xl relative z-10 w-full h-auto object-cover"
                         />
                     </div>
                 </div>

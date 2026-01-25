@@ -1,54 +1,242 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import CtaSection from "../components/CtaSection.astro";
 import { url } from "../utils/urls";
+
+const services = [
+	{
+		title: "Kompostárna Krhov",
+		description:
+			"Výroba a prodej certifikovaného zahradního kompostu a substrátů. Ekologická likvidace bioodpadu.",
+		href: "/kompostarna-krhov",
+		image: "/images/kompostarna-hero.webp",
+		color: "bg-green-600",
+	},
+	{
+		title: "Kontejnerová doprava",
+		description:
+			"Odvoz sutí, odpadů a dovoz sypkých materiálů vozem Tatra Phoenix 6x6 s nosností až 14 tun.",
+		href: "/kontejnerova-doprava",
+		image: "/images/kontejnerova-doprava-hero.jpg",
+		color: "bg-amber-600",
+	},
+	{
+		title: "Výkopové práce",
+		description:
+			"Zemní a výkopové práce moderním minibagrem. Ideální pro základy staveb, bazény nebo přípojky.",
+		href: "/vykopove-prace",
+		image: "/images/excavator-hero.jpg",
+		color: "bg-slate-800",
+	},
+	{
+		title: "Drcení biomasy",
+		description:
+			"Profesionální drcení a objemová redukce dřeva a bioodpadu mobilním drtičem Willibald.",
+		href: "/drceni-biomasy",
+		image: "/images/drceni-biomasy/4.jpg",
+		color: "bg-amber-500",
+	},
+];
 ---
 
-<BaseLayout title="Jan Musil | Úvodní stránka">
-	<div class="py-12 text-center">
-		<h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6">
-			Vítejte na našem novém webu
-		</h1>
-		<p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
-			Toto je ukázková stránka postavená na Astro a Tailwind CSS. Všechny
-			texty jsou zatím pouze placeholdery připravené pro váš obsah.
-		</p>
-		<div class="flex justify-center gap-4">
-			<a
-				href={url("/#sluzby")}
-				class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-lg transition-all uppercase tracking-wider"
-			>
-				Naše služby
-			</a>
-			<a
-				href={url("/kontakt")}
-				class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 px-8 rounded-lg transition-all uppercase tracking-wider"
-			>
-				Kontaktujte nás
-			</a>
-		</div>
-	</div>
+<BaseLayout
+	title="Jan Musil - Služby | Profesionální služby v oblasti dopravy a odpadů"
+	fullWidth={true}
+	transparentNav={true}
+>
+	<!-- Hero Section -->
+	<Hero
+		image="/images/excavator-hero.jpg"
+		imageAlt="Služby Musil - Technika v akci"
+	>
+		<Fragment slot="title">
+			Profesionální služby <br />
+			<span class="text-amber-500">pro vaše projekty</span>
+		</Fragment>
+		<Fragment slot="subtitle">
+			Od dopravy a zemních prací až po ekologické zpracování bioodpadu.
+			Jsme rodinná firma s tradicí a moderní technikou na Blanensku.
+		</Fragment>
+		<Fragment slot="actions">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-12 max-w-5xl mx-auto md:mx-0">
+				{services.map((service) => (
+					<a 
+						href={url(service.href)}
+						class="group relative h-48 md:h-64 rounded-3xl overflow-hidden shadow-2xl transition-all hover:scale-[1.02]"
+					>
+						<!-- Card Background Image -->
+						<img 
+							src={url(service.image)} 
+							alt={service.title} 
+							class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+						/>
+						<!-- Gradient Overlay -->
+						<div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent group-hover:from-amber-600/80 transition-colors duration-500"></div>
+						
+						<!-- Card Content -->
+						<div class="absolute inset-0 p-6 flex flex-col justify-end">
+							<span class={`inline-block w-8 h-1 mb-3 rounded-full transition-all duration-500 group-hover:w-16 ${service.color.replace('bg-', 'bg-')}`}></span>
+							<h3 class="text-xl md:text-2xl font-bold text-white mb-2">{service.title}</h3>
+							<div class="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">
+								Zjistit více
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+								</svg>
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+		</Fragment>
+	</Hero>
 
-	<section class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-		<div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100">
-			<h2 class="text-xl font-bold mb-3 text-slate-800">Služba 1</h2>
-			<p class="text-slate-600">
-				Popis první nabízené služby. Zde bude podrobnější text o tom, co
-				děláte.
-			</p>
-		</div>
-		<div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100">
-			<h2 class="text-xl font-bold mb-3 text-slate-800">Služba 2</h2>
-			<p class="text-slate-600">
-				Popis druhé nabízené služby. Každý blok může mít svou vlastní
-				ikonu a detaily.
-			</p>
-		</div>
-		<div class="p-6 bg-white rounded-xl shadow-sm border border-slate-100">
-			<h2 class="text-xl font-bold mb-3 text-slate-800">Služba 3</h2>
-			<p class="text-slate-600">
-				Popis třetí nabízené služby. Astro umožňuje snadné komponentové
-				složení.
-			</p>
+	<!-- Why Us Section -->
+	<section class="py-24 bg-white">
+		<div class="container mx-auto px-4">
+			<div class="flex flex-col lg:flex-row items-center gap-16">
+				<div class="w-full lg:w-1/2">
+					<img
+						src={url("/images/o-nas/kompostarna.jpg")}
+						alt="Kompostárna Krhov"
+						class="rounded-3xl shadow-2xl w-full h-auto object-cover aspect-video"
+					/>
+				</div>
+				<div class="w-full lg:w-1/2">
+					<span
+						class="text-amber-600 font-bold uppercase tracking-widest text-sm mb-4 block"
+						>Proč si vybrat nás</span
+					>
+					<h2
+						class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-8 leading-tight"
+					>
+						Tradice založená na <br /><span class="text-amber-600"
+							>poctivé práci</span
+						>
+					</h2>
+
+					<div class="space-y-8">
+						<div class="flex gap-6">
+							<div
+								class="shrink-0 w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-amber-500"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+									></path>
+								</svg>
+							</div>
+							<div>
+								<h4
+									class="text-xl font-bold text-slate-900 mb-2"
+								>
+									Spolehlivost a kvalita
+								</h4>
+								<p class="text-slate-600">
+									Všechny zakázky realizujeme s maximální
+									pečlivostí a důrazem na výsledek.
+								</p>
+							</div>
+						</div>
+
+						<div class="flex gap-6">
+							<div
+								class="shrink-0 w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-amber-500"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+								</svg>
+							</div>
+							<div>
+								<h4
+									class="text-xl font-bold text-slate-900 mb-2"
+								>
+									Moderní technika
+								</h4>
+								<p class="text-slate-600">
+									Disponujeme výkonným vozovým parkem a
+									stroji, které si poradí s každou výzvou.
+								</p>
+							</div>
+						</div>
+
+						<div class="flex gap-6">
+							<div
+								class="shrink-0 w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-amber-500"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+									></path>
+								</svg>
+							</div>
+							<div>
+								<h4
+									class="text-xl font-bold text-slate-900 mb-2"
+								>
+									Rodinný přístup
+								</h4>
+								<p class="text-slate-600">
+									Zakládáme si na férovém jednání a osobním
+									přístupu ke každému zákazníkovi.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="mt-12">
+						<a
+							href={url("/o-nas")}
+							class="inline-flex items-center gap-2 font-bold text-slate-900 hover:text-amber-600 transition-colors uppercase tracking-widest text-sm"
+						>
+							Více o naší historii
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-5 w-5"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
+
+	<CtaSection />
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import { url } from "../utils/urls";
+import { CONTACT_INFO } from "../constants/contact";
 ---
 
 <section id="kontakt" class="py-20 bg-slate-200 text-slate-900 text-center">
@@ -19,10 +20,10 @@ import { url } from "../utils/urls";
                 Přejít na kontakty
             </a>
             <a
-                href="tel:+420607199629"
+                href={`tel:${CONTACT_INFO.phonePlain}`}
                 class="bg-white border-2 border-slate-200 hover:border-slate-900 text-slate-700 hover:text-slate-900 font-bold py-4 px-10 rounded-lg transition-all hover:bg-white uppercase tracking-wider hover:scale-105"
             >
-                Zavolat ihned
+                Volejte {CONTACT_INFO.phone}
             </a>
         </div>
     </div>

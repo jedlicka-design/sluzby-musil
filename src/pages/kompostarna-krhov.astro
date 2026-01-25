@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CtaSection from "../components/CtaSection.astro";
 import Hero from "../components/Hero.astro";
 import { url } from "../utils/urls";
+import { CONTACT_INFO } from "../constants/contact";
 
 const wasteCatalogue = [
     { code: "02 01 01", name: "Kaly z praní a z čištění" },
@@ -138,10 +139,10 @@ const wasteCatalogue = [
                                 Poptat
                             </a>
                             <a
-                                href="tel:+420607199629"
+                                href={`tel:${CONTACT_INFO.phonePlain}`}
                                 class="inline-block bg-white border-2 border-slate-200 hover:border-slate-900 text-slate-700 hover:text-slate-900 font-bold py-3 px-8 rounded-lg transition-all hover:scale-105 uppercase tracking-wider text-sm"
                             >
-                                Zavolat ihned
+                                Volejte {CONTACT_INFO.phone}
                             </a>
                         </div>
                     </div>
@@ -292,10 +293,10 @@ const wasteCatalogue = [
                                 Poptat
                             </a>
                             <a
-                                href="tel:+420607199629"
+                                href={`tel:${CONTACT_INFO.phonePlain}`}
                                 class="inline-block bg-white border-2 border-slate-200 hover:border-slate-900 text-slate-700 hover:text-slate-900 font-bold py-3 px-8 rounded-lg transition-all hover:scale-105 uppercase tracking-wider text-sm"
                             >
-                                Zavolat ihned
+                                Volejte {CONTACT_INFO.phone}
                             </a>
                         </div>
                     </div>
@@ -436,8 +437,9 @@ const wasteCatalogue = [
                     <p class="text-xs text-slate-400 italic">
                         Nenašli jste svůj kód odpadu? Kontaktujte nás pro
                         individuální posouzení na čísle <a
-                            href="tel:+420607199629"
-                            class="font-bold text-amber-600">+420 607 199 629</a
+                            href={`tel:${CONTACT_INFO.phonePlain}`}
+                            class="font-bold text-amber-600"
+                            >{CONTACT_INFO.phone}</a
                         >.
                     </p>
                 </div>
@@ -485,19 +487,18 @@ const wasteCatalogue = [
     const closeBtnFooter = document.getElementById("closeCatalogueBtn");
 
     openBtn?.addEventListener("click", () => {
-        dialog?.showModal();
-        document.body.style.overflow = "hidden";
+        dialog.showModal();
     });
 
-    const closeHandler = () => {
-        dialog?.close();
-        document.body.style.overflow = "auto";
-    };
+    closeBtn?.addEventListener("click", () => {
+        dialog.close();
+    });
 
-    closeBtn?.addEventListener("click", closeHandler);
-    closeBtnFooter?.addEventListener("click", closeHandler);
+    closeBtnFooter?.addEventListener("click", () => {
+        dialog.close();
+    });
 
-    // Close when clicking backdrop
+    // Close when clicking outside
     dialog?.addEventListener("click", (e) => {
         const dialogDimensions = dialog.getBoundingClientRect();
         if (
@@ -506,7 +507,7 @@ const wasteCatalogue = [
             e.clientY < dialogDimensions.top ||
             e.clientY > dialogDimensions.bottom
         ) {
-            closeHandler();
+            dialog.close();
         }
     });
 </script>

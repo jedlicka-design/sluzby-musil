@@ -3,7 +3,9 @@ import Logo from "./Logo.astro";
 import { url } from "../utils/urls";
 import { CONTACT_INFO } from "../constants/contact";
 
-const currentPath = Astro.url.pathname;
+const normalizePath = (p: string) =>
+	(p.endsWith("/") ? p.slice(0, -1) : p) || "/";
+const currentPath = normalizePath(Astro.url.pathname);
 
 const navItems = [
 	{ name: "Domů", href: "/" },
@@ -53,25 +55,27 @@ const { transparent = false } = Astro.props;
 				navItems.map((item) => {
 					const hasChildren =
 						item.children && item.children.length > 0;
-					const itemHref = url(item.href);
+					const itemHref = normalizePath(url(item.href));
 
 					const isParentActive =
 						hasChildren &&
 						item.children.some((child) => {
-							const childHref = url(child.href);
+							const childHref = normalizePath(url(child.href));
 							return (
 								childHref === currentPath ||
-								(childHref !== url("/") &&
+								(childHref !== normalizePath(url("/")) &&
 									currentPath.startsWith(childHref))
 							);
 						});
 
-					const isActive = itemHref === currentPath || isParentActive;
+					const isActive =
+						(item.href !== "#" && itemHref === currentPath) ||
+						isParentActive;
 
 					return (
 						<li class="relative group">
 							<a
-								href={itemHref}
+								href={url(item.href)}
 								class:list={[
 									"transition-colors flex items-center gap-1 py-2 uppercase tracking-wider text-sm",
 									isActive
@@ -102,17 +106,15 @@ const { transparent = false } = Astro.props;
 								<div class="absolute left-0 mt-0 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 pt-2 z-50">
 									<div class="bg-white rounded-xl shadow-2xl overflow-hidden border border-slate-100 p-2">
 										{item.children.map((child) => {
-											const childHref = url(child.href);
+											const childHref = normalizePath(
+												url(child.href),
+											);
 											const isChildActive =
-												childHref === currentPath ||
-												(childHref !== url("/") &&
-													currentPath.startsWith(
-														childHref,
-													));
+												childHref === currentPath;
 
 											return (
 												<a
-													href={childHref}
+													href={url(child.href)}
 													class:list={[
 														"block px-4 py-3 text-sm transition-colors rounded-lg mb-1 last:mb-0",
 														isChildActive
@@ -203,13 +205,31 @@ const { transparent = false } = Astro.props;
 				navItems.map((item) => {
 					const hasChildren =
 						item.children && item.children.length > 0;
-					const itemHref = url(item.href);
+					const itemHref = normalizePath(url(item.href));
+
+					const isParentActive =
+						hasChildren &&
+						item.children.some(
+							(child) =>
+								normalizePath(url(child.href)) === currentPath,
+						);
+
+					const isActive =
+						(item.href !== "#" && itemHref === currentPath) ||
+						isParentActive;
 
 					return (
 						<li class="flex flex-col">
 							{hasChildren ? (
 								<>
-									<button class="flex items-center justify-between w-full py-3 px-4 text-slate-700 font-bold uppercase tracking-wide text-sm active:bg-slate-50 rounded-lg transition-colors mobile-submenu-toggle">
+									<button
+										class:list={[
+											"flex items-center justify-between w-full py-3 px-4 uppercase tracking-wide text-sm active:bg-slate-50 rounded-lg transition-colors mobile-submenu-toggle",
+											isActive
+												? "text-amber-600 font-bold"
+												: "text-slate-700 font-bold",
+										]}
+									>
 										<span>{item.name}</span>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -227,20 +247,38 @@ const { transparent = false } = Astro.props;
 										</svg>
 									</button>
 									<div class="hidden flex flex-col pl-6 pr-4 pb-2 space-y-1 bg-slate-50/50 rounded-lg mt-1">
-										{item.children.map((child) => (
-											<a
-												href={url(child.href)}
-												class="block py-3 px-4 text-sm text-slate-600 hover:text-amber-600 transition-colors"
-											>
-												{child.name}
-											</a>
-										))}
+										{item.children.map((child) => {
+											const childHref = normalizePath(
+												url(child.href),
+											);
+											const isChildActive =
+												childHref === currentPath;
+
+											return (
+												<a
+													href={url(child.href)}
+													class:list={[
+														"block py-3 px-4 text-sm transition-colors rounded-md",
+														isChildActive
+															? "text-amber-600 font-bold bg-amber-50"
+															: "text-slate-600 hover:text-amber-600",
+													]}
+												>
+													{child.name}
+												</a>
+											);
+										})}
 									</div>
 								</>
 							) : (
 								<a
-									href={itemHref}
-									class="py-3 px-4 text-slate-700 font-bold uppercase tracking-wide text-sm active:bg-slate-50 rounded-lg transition-colors"
+									href={url(item.href)}
+									class:list={[
+										"py-3 px-4 uppercase tracking-wide text-sm rounded-lg transition-colors",
+										isActive
+											? "text-amber-600 font-bold bg-amber-50"
+											: "text-slate-700 font-bold active:bg-slate-50",
+									]}
 								>
 									{item.name}
 								</a>
@@ -251,45 +289,48 @@ const { transparent = false } = Astro.props;
 			}
 		</ul>
 	</div>
-</nav>
 
-<script>
-	const menuToggle = document.getElementById("mobile-menu-toggle");
-	const mobileMenu = document.getElementById("mobile-menu");
-	const hamburgerIcon = document.getElementById("hamburger-icon");
-	const closeIcon = document.getElementById("close-icon");
+	<script>
+		const menuToggle = document.getElementById("mobile-menu-toggle");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const hamburgerIcon = document.getElementById("hamburger-icon");
+		const closeIcon = document.getElementById("close-icon");
 
-	menuToggle?.addEventListener("click", () => {
-		const isHidden = mobileMenu?.classList.contains("hidden");
+		menuToggle?.addEventListener("click", () => {
+			const isHidden = mobileMenu?.classList.contains("hidden");
 
-		if (isHidden) {
-			mobileMenu?.classList.remove("hidden");
-			hamburgerIcon?.classList.add("hidden");
-			closeIcon?.classList.remove("hidden");
-		} else {
-			mobileMenu?.classList.add("hidden");
-			hamburgerIcon?.classList.remove("hidden");
-			closeIcon?.classList.add("hidden");
-		}
-	});
-
-	// Mobile submenu toggles
-	const submenuToggles = document.querySelectorAll(".mobile-submenu-toggle");
-	submenuToggles.forEach((toggle) => {
-		toggle.addEventListener("click", () => {
-			const submenu = toggle.nextElementSibling;
-			const icon = toggle.querySelector("svg");
-
-			if (submenu) {
-				const isCurrentlyHidden = submenu.classList.contains("hidden");
-				if (isCurrentlyHidden) {
-					submenu.classList.remove("hidden");
-					icon?.classList.add("rotate-180");
-				} else {
-					submenu.classList.add("hidden");
-					icon?.classList.remove("rotate-180");
-				}
+			if (isHidden) {
+				mobileMenu?.classList.remove("hidden");
+				hamburgerIcon?.classList.add("hidden");
+				closeIcon?.classList.remove("hidden");
+			} else {
+				mobileMenu?.classList.add("hidden");
+				hamburgerIcon?.classList.remove("hidden");
+				closeIcon?.classList.add("hidden");
 			}
 		});
-	});
-</script>
+
+		// Mobile submenu toggles
+		const submenuToggles = document.querySelectorAll(
+			".mobile-submenu-toggle",
+		);
+		submenuToggles.forEach((toggle) => {
+			toggle.addEventListener("click", () => {
+				const submenu = toggle.nextElementSibling;
+				const icon = toggle.querySelector("svg");
+
+				if (submenu) {
+					const isCurrentlyHidden =
+						submenu.classList.contains("hidden");
+					if (isCurrentlyHidden) {
+						submenu.classList.remove("hidden");
+						icon?.classList.add("rotate-180");
+					} else {
+						submenu.classList.add("hidden");
+						icon?.classList.remove("rotate-180");
+					}
+				}
+			});
+		});
+	</script>
+</nav>

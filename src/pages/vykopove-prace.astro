@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CtaSection from "../components/CtaSection.astro";
+import Hero from "../components/Hero.astro";
 import { url } from "../utils/urls";
 ---
 
@@ -9,38 +10,28 @@ import { url } from "../utils/urls";
     fullWidth={true}
     transparentNav={true}
 >
-    <!-- Hero Section -->
-    <section class="relative bg-slate-900 text-white overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img
-                src={url("/images/excavator-hero.jpg")}
-                alt="Výkopové práce minibagrem"
-                class="w-full h-full object-cover opacity-60"
-            />
-            <div
-                class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"
-            >
-            </div>
-        </div>
-
-        <div class="container mx-auto px-4 py-32 md:py-48 relative z-10">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                Profesionální zemní práce <br />
-                <span class="text-amber-500">minibagrem LiuGong</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-50 max-w-2xl mb-8">
-                Nabízíme komplexní výkopové a zemní práce. Díky kompaktním
-                rozměrům se dostaneme i do stísněných prostor, přitom zvládneme
-                i náročné úkoly.
-            </p>
+    <Hero
+        image="/images/excavator-hero.jpg"
+        imageAlt="Výkopové práce minibagrem"
+    >
+        <Fragment slot="title">
+            Profesionální zemní práce <br />
+            <span class="text-amber-500">minibagrem LiuGong</span>
+        </Fragment>
+        <Fragment slot="subtitle">
+            Nabízíme komplexní výkopové a zemní práce. Díky kompaktním rozměrům
+            se dostaneme i do stísněných prostor, přitom zvládneme i náročné
+            úkoly.
+        </Fragment>
+        <Fragment slot="actions">
             <a
                 href="#kontakt"
-                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 px-8 rounded-lg transition-transform hover:scale-105 shadow-lg uppercase tracking-wider"
+                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 px-8 rounded-lg transition-transform hover:scale-105 shadow-lg uppercase tracking-wider text-sm"
             >
                 Poptat výkopové práce
             </a>
-        </div>
-    </section>
+        </Fragment>
+    </Hero>
 
     <!-- Machine Specs Section -->
     <section class="py-16 md:py-24">

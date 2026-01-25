@@ -1,0 +1,512 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CtaSection from "../components/CtaSection.astro";
+import Hero from "../components/Hero.astro";
+import { url } from "../utils/urls";
+
+const wasteCatalogue = [
+    { code: "02 01 01", name: "Kaly z praní a z čištění" },
+    { code: "02 01 03", name: "Odpad rostlinných pletiv" },
+    { code: "02 01 07", name: "Odpad z lesnictví" },
+    {
+        code: "02 03 01",
+        name: "Kaly z praní, čištění, loupání, odstřeďování a separace",
+    },
+    {
+        code: "02 03 05",
+        name: "Kaly z čištění odpadních vod v místě jejich vzniku",
+    },
+    { code: "02 06 01", name: "Suroviny nevhodné ke spotřebě nebo zpracování" },
+    {
+        code: "02 06 03",
+        name: "Kaly z čištění odpadních vod v místě jejich vzniku",
+    },
+    {
+        code: "02 07 01",
+        name: "Odpad z praní, čištění a mechanického zpracování surovin",
+    },
+    { code: "02 07 02", name: "Odpad z destilace lihovin" },
+    { code: "02 07 04", name: "Suroviny nevhodné ke spotřebě nebo zpracování" },
+    {
+        code: "02 07 05",
+        name: "Kaly z čištění odpadních vod v místě jejich vzniku",
+    },
+    { code: "03 01 01", name: "Odpadní kůra a korek" },
+    { code: "17 02 01", name: "Dřevo" },
+    { code: "19 12 07", name: "Dřevo neuvedené pod číslem 19 12 06" },
+    { code: "20 01 38", name: "Dřevo neuvedené pod číslem 20 01 37" },
+    { code: "20 02 01", name: "Biologicky rozložitelný odpad" },
+    { code: "20 03 02", name: "Odpad z tržišť" },
+];
+---
+
+<BaseLayout
+    title="Kompostárna Krhov | Služby Musil - Prodej kompostu a likvidace bioodpadu"
+    fullWidth={true}
+    transparentNav={true}
+>
+    <Hero
+        image={url("/images/kompostarna-hero.webp")}
+        imageAlt="Kompostárna Krhov - Služby Musil"
+    >
+        <Fragment slot="title">
+            Kompostárna <br />
+            <span class="text-amber-500">Krhov</span>
+        </Fragment>
+        <Fragment slot="subtitle">
+            Nabízíme vysoce kvalitní certifikovaný kompost a substráty. Zároveň
+            zajišťujeme ekologickou likvidaci bioodpadu ze zahrad i lesnictví.
+        </Fragment>
+        <Fragment slot="actions">
+            <a
+                href="#prodej"
+                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 px-8 rounded-lg transition-transform hover:scale-105 shadow-lg uppercase tracking-wider text-sm"
+            >
+                Koupit kompost
+            </a>
+            <a
+                href="#likvidace"
+                class="inline-block bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold py-4 px-8 rounded-lg transition-all uppercase tracking-wider backdrop-blur-sm text-sm"
+            >
+                Likvidace bioodpadu
+            </a>
+        </Fragment>
+    </Hero>
+
+    <!-- Main Content Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto space-y-24">
+                <!-- 1. Prodej produktů -->
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-mt-24 md:scroll-mt-32"
+                    id="prodej"
+                >
+                    <div class="space-y-8">
+                        <h2
+                            class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+                        >
+                            Kvalitní zahradní <br />kompost a substráty
+                        </h2>
+                        <p class="text-lg text-slate-600 leading-relaxed">
+                            Náš kompost je výsledkem pečlivého procesu tlení v
+                            našem zařízení. Je bohatý na klíčové živiny a
+                            ideální pro rekultivaci půdy, hnojení zahrad nebo
+                            jako základ pro pěstování rostlin.
+                        </p>
+
+                        <div
+                            class="bg-amber-50 rounded-xl p-4 border border-amber-100 flex items-start gap-3"
+                        >
+                            <div
+                                class="bg-amber-500 rounded-lg p-2 text-white shrink-0"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                                    ></path>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 011 1v1m4-1a1 1 0 011 1v1m-1-4h3a1 1 0 001-1V11a1 1 0 00-1-1h-3V8a1 1 0 00-1-1h-5"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">
+                                    Zajistíme vám i dopravu
+                                </h4>
+                                <p class="text-xs text-slate-600 leading-tight">
+                                    Zakoupený kompost či substrát vám rádi
+                                    dovezeme. Cena dopravy je na zavolání dle
+                                    množství a vzdálenosti.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pt-4 flex flex-wrap gap-4">
+                            <a
+                                href={url("/kontakt")}
+                                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 px-8 rounded-lg transition-all hover:scale-105 uppercase tracking-wider text-sm shadow-md"
+                            >
+                                Poptat
+                            </a>
+                            <a
+                                href="tel:+420607199629"
+                                class="inline-block bg-white border-2 border-slate-200 hover:border-slate-900 text-slate-700 hover:text-slate-900 font-bold py-3 px-8 rounded-lg transition-all hover:scale-105 uppercase tracking-wider text-sm"
+                            >
+                                Zavolat ihned
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Kompost -->
+                        <div
+                            class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col group"
+                        >
+                            <div class="h-48 overflow-hidden relative">
+                                <img
+                                    src={url("/images/kompost-detail.png")}
+                                    alt="Náš kompost"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div
+                                    class="absolute top-4 right-4 bg-amber-500 text-slate-900 font-bold px-3 py-1 rounded-full text-[10px]"
+                                >
+                                    TOP KVALITA
+                                </div>
+                            </div>
+                            <div class="p-6 flex-grow">
+                                <h4
+                                    class="text-xl font-bold text-slate-900 mb-1 uppercase tracking-wide"
+                                >
+                                    Kompost
+                                </h4>
+                                <p class="text-slate-500 text-sm mb-4">
+                                    Čistý, vyzrálý, ideální pro hnojení i
+                                    terénní úpravy.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-slate-200"
+                                >
+                                    <span
+                                        class="text-amber-600 font-extrabold text-2xl"
+                                        >800 Kč/m³</span
+                                    >
+                                    <span
+                                        class="block text-[10px] text-slate-400 font-normal uppercase"
+                                        >+ 21% DPH</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Substrát -->
+                        <div
+                            class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col group"
+                        >
+                            <div class="h-48 overflow-hidden relative">
+                                <img
+                                    src={url("/images/substrat-detail.png")}
+                                    alt="Náš substrát"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                            </div>
+                            <div class="p-6 flex-grow">
+                                <h4
+                                    class="text-xl font-bold text-slate-900 mb-1 uppercase tracking-wide"
+                                >
+                                    Substrát
+                                </h4>
+                                <p class="text-slate-500 text-sm mb-4">
+                                    Směs hlíny a vyzrálého kompostu připravená k
+                                    okamžitému užití.
+                                </p>
+                                <div
+                                    class="mt-auto pt-4 border-t border-slate-200"
+                                >
+                                    <span
+                                        class="text-amber-600 font-extrabold text-2xl"
+                                        >1200 Kč/m³</span
+                                    >
+                                    <span
+                                        class="block text-[10px] text-slate-400 font-normal uppercase"
+                                        >+ 21% DPH</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-8">
+                    <hr class="border-slate-100" />
+                </div>
+
+                <!-- 2. Likvidace bioodpadu -->
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-mt-24 md:scroll-mt-32"
+                    id="likvidace"
+                >
+                    <div class="lg:order-2 space-y-8">
+                        <h2
+                            class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+                        >
+                            Likvidace odpadu<br /> ze zeleně
+                        </h2>
+                        <p
+                            class="text-lg text-slate-600 leading-relaxed max-w-xl"
+                        >
+                            Veškerý materiál je u nás ekologicky zpracován a
+                            přeměněn na užitečný kompost. <button
+                                id="openCatalogue"
+                                class="text-green-600 font-bold underline hover:text-green-700 transition-colors"
+                                >Seznam přijímaných odpadů</button
+                            >.
+                        </p>
+
+                        <div
+                            class="bg-green-50 rounded-xl p-4 border border-green-100 flex items-start gap-3 max-w-xl"
+                        >
+                            <div
+                                class="bg-green-600 rounded-lg p-2 text-white shrink-0"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">
+                                    Přistavení kontejneru
+                                </h4>
+                                <p class="text-xs text-slate-600 leading-tight">
+                                    Pro větší objemy bioodpadu přistavíme
+                                    kontejner přímo k vám. Cena služby je
+                                    individuální na zavolání.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pt-4 flex flex-wrap gap-4">
+                            <a
+                                href={url("/kontakt")}
+                                class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition-all hover:scale-105 uppercase tracking-wider text-sm shadow-md"
+                            >
+                                Poptat
+                            </a>
+                            <a
+                                href="tel:+420607199629"
+                                class="inline-block bg-white border-2 border-slate-200 hover:border-slate-900 text-slate-700 hover:text-slate-900 font-bold py-3 px-8 rounded-lg transition-all hover:scale-105 uppercase tracking-wider text-sm"
+                            >
+                                Zavolat ihned
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:order-1 flex flex-col gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Bioodpad -->
+                            <div
+                                class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col group"
+                            >
+                                <div class="h-48 overflow-hidden relative">
+                                    <img
+                                        src={url("/images/bioodpad-detail.png")}
+                                        alt="Likvidace bioodpadu"
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                </div>
+                                <div class="p-6 flex-grow">
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 mb-1 uppercase tracking-wide"
+                                    >
+                                        Bioodpad
+                                    </h4>
+                                    <p class="text-slate-500 text-sm mb-4">
+                                        Tráva, listí, rostlinné zbytky a drobný
+                                        ořez.
+                                    </p>
+                                    <div
+                                        class="mt-auto pt-4 border-t border-slate-200"
+                                    >
+                                        <span
+                                            class="text-green-600 font-extrabold text-2xl"
+                                            >600 Kč/t</span
+                                        >
+                                        <span
+                                            class="block text-[10px] text-slate-400 font-normal uppercase"
+                                            >+ 21% DPH</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kořeny -->
+                            <div
+                                class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col group"
+                            >
+                                <div class="h-48 overflow-hidden relative">
+                                    <img
+                                        src={url("/images/koreny-detail.png")}
+                                        alt="Likvidace kořenů"
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                </div>
+                                <div class="p-6 flex-grow">
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 mb-1 uppercase tracking-wide"
+                                    >
+                                        Kořeny, pařezy
+                                    </h4>
+                                    <p class="text-slate-500 text-sm mb-4">
+                                        Objemný dřevní odpad a pařezy stromů.
+                                    </p>
+                                    <div
+                                        class="mt-auto pt-4 border-t border-slate-200"
+                                    >
+                                        <span
+                                            class="text-green-600 font-extrabold text-2xl"
+                                            >1200 Kč/t</span
+                                        >
+                                        <span
+                                            class="block text-[10px] text-slate-400 font-normal uppercase"
+                                            >+ 21% DPH</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Dialog for Waste Catalogue -->
+    <dialog
+        id="catalogueDialog"
+        class="fixed inset-0 m-auto backdrop:bg-slate-900/50 backdrop:backdrop-blur-sm rounded-2xl shadow-2xl border-none p-0 max-w-2xl w-[95%] overflow-hidden"
+    >
+        <div class="flex flex-col h-full max-h-[85vh]">
+            <!-- Header -->
+            <div
+                class="flex justify-between items-center px-6 py-4 bg-slate-50 border-b border-slate-100"
+            >
+                <h3 class="text-xl font-bold text-slate-900">
+                    Katalog přijímaných odpadů
+                </h3>
+                <button
+                    id="closeCatalogue"
+                    class="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400 hover:text-slate-900"
+                    aria-label="Zavřít"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Content -->
+            <div class="p-6 overflow-y-auto bg-white">
+                <p class="text-slate-600 text-sm mb-6">
+                    Seznam kódů odpadů, které jsme oprávněni v našem zařízení
+                    odebírat k likvidaci či zhodnocení.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1">
+                    {
+                        wasteCatalogue.map((item) => (
+                            <div class="flex items-center gap-3 p-2 hover:bg-slate-50 rounded transition-colors group">
+                                <span class="font-mono text-[11px] text-amber-600 font-bold bg-amber-50 px-2 py-0.5 rounded border border-amber-100 min-w-[75px] text-center">
+                                    {item.code}
+                                </span>
+                                <span class="text-slate-700 text-xs leading-snug">
+                                    {item.name}
+                                </span>
+                            </div>
+                        ))
+                    }
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-50 text-center">
+                    <p class="text-xs text-slate-400 italic">
+                        Nenašli jste svůj kód odpadu? Kontaktujte nás pro
+                        individuální posouzení na čísle <a
+                            href="tel:+420607199629"
+                            class="font-bold text-amber-600">+420 607 199 629</a
+                        >.
+                    </p>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div
+                class="px-6 py-4 bg-slate-50 border-t border-slate-100 text-right"
+            >
+                <button
+                    id="closeCatalogueBtn"
+                    class="bg-slate-900 text-white font-bold py-2 px-6 rounded-lg hover:bg-slate-800 transition-colors uppercase text-xs tracking-wider"
+                >
+                    Zavřít
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Full Width Map Section -->
+    <section class="h-[500px] w-full bg-slate-200 overflow-hidden">
+        <iframe
+            width="100%"
+            height="100%"
+            id="gmap_canvas"
+            src="https://maps.google.com/maps?q=Drnovice%20447,%20679%2076%20Drnovice,%20Czechia&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            class="w-full h-full"></iframe>
+    </section>
+
+    <CtaSection />
+</BaseLayout>
+
+<script>
+    const dialog = document.getElementById(
+        "catalogueDialog",
+    ) as HTMLDialogElement;
+    const openBtn = document.getElementById("openCatalogue");
+    const closeBtn = document.getElementById("closeCatalogue");
+    const closeBtnFooter = document.getElementById("closeCatalogueBtn");
+
+    openBtn?.addEventListener("click", () => {
+        dialog?.showModal();
+        document.body.style.overflow = "hidden";
+    });
+
+    const closeHandler = () => {
+        dialog?.close();
+        document.body.style.overflow = "auto";
+    };
+
+    closeBtn?.addEventListener("click", closeHandler);
+    closeBtnFooter?.addEventListener("click", closeHandler);
+
+    // Close when clicking backdrop
+    dialog?.addEventListener("click", (e) => {
+        const dialogDimensions = dialog.getBoundingClientRect();
+        if (
+            e.clientX < dialogDimensions.left ||
+            e.clientX > dialogDimensions.right ||
+            e.clientY < dialogDimensions.top ||
+            e.clientY > dialogDimensions.bottom
+        ) {
+            closeHandler();
+        }
+    });
+</script>

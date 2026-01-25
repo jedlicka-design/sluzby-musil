@@ -1,0 +1,285 @@
+---
+import { url } from "../utils/urls";
+
+interface Image {
+    src: string;
+    alt: string;
+}
+
+interface Props {
+    images: Image[];
+    columns?: number;
+}
+
+const { images, columns = 3 } = Astro.props;
+
+const gridCols = {
+    2: "sm:grid-cols-2",
+    3: "sm:grid-cols-2 lg:grid-cols-3",
+    4: "sm:grid-cols-2 lg:grid-cols-4",
+};
+
+const columnClass = gridCols[columns as keyof typeof gridCols] || gridCols[3];
+---
+
+<section class="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
+    <div class="container mx-auto px-4">
+        <div class={`grid grid-cols-1 ${columnClass} gap-6`}>
+            {
+                images.map((img) => (
+                    <button
+                        class="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] bg-slate-200 cursor-pointer border-none p-0 gallery-item"
+                        data-src={url(img.src)}
+                        data-alt={img.alt}
+                    >
+                        <img
+                            src={url(img.src)}
+                            alt={img.alt}
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-10 w-10 text-white transform scale-90 group-hover:scale-100 transition-transform duration-300"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                                />
+                            </svg>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <p class="text-white font-bold text-lg text-left">
+                                {img.alt}
+                            </p>
+                        </div>
+                    </button>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<dialog
+    id="gallery-lightbox"
+    class="fixed inset-0 z-[100] w-screen h-screen bg-transparent border-none p-0 overflow-visible focus:outline-none"
+>
+    <!-- Background backdrop layer -->
+    <div class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl -z-10"></div>
+
+    <div
+        class="relative w-full h-full flex flex-col items-center justify-center p-4"
+    >
+        <!-- Close Button -->
+        <button
+            id="close-lightbox"
+            class="fixed top-6 right-6 bg-white/10 hover:bg-amber-500 text-white hover:text-slate-900 p-4 rounded-full shadow-2xl transition-all hover:scale-110 z-[120] border border-white/20"
+            aria-label="Zavřít"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <!-- Navigation Arrows -->
+        <button
+            id="prev-lightbox"
+            class="fixed left-4 sm:left-12 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 text-white p-6 rounded-full transition-all hover:scale-110 z-[120] hidden sm:flex border border-white/5"
+            aria-label="Předchozí"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-10 w-10"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+
+        <button
+            id="next-lightbox"
+            class="fixed right-4 sm:right-12 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 text-white p-6 rounded-full transition-all hover:scale-110 z-[120] hidden sm:flex border border-white/5"
+            aria-label="Další"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-10 w-10"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+
+        <!-- Image and Metadata Container -->
+        <div
+            class="w-full h-full flex flex-col items-center justify-center max-w-6xl mx-auto z-[110]"
+        >
+            <div
+                class="relative w-full h-[65vh] flex items-center justify-center"
+            >
+                <img
+                    id="lightbox-img"
+                    src=""
+                    alt=""
+                    class="max-w-full max-h-full object-contain rounded-xl shadow-2xl transition-all duration-300 pointer-events-auto"
+                />
+            </div>
+
+            <div class="mt-8 text-center space-y-2 max-w-3xl px-4">
+                <div
+                    id="lightbox-caption"
+                    class="text-white font-bold text-2xl drop-shadow-lg leading-tight"
+                >
+                </div>
+                <div
+                    id="lightbox-counter"
+                    class="text-white/40 text-xs font-bold tracking-[0.2em] uppercase"
+                >
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<style>
+    /* Prevent backdrop double overlay since we use custom div for animation control */
+    dialog::backdrop {
+        display: none;
+    }
+
+    /* Animation */
+    dialog[open] {
+        animation: fadeZoom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeZoom {
+        from {
+            transform: scale(0.98);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    body:has(dialog[open]) {
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    const lightbox = document.getElementById(
+        "gallery-lightbox",
+    ) as HTMLDialogElement;
+    const lightboxImg = document.getElementById(
+        "lightbox-img",
+    ) as HTMLImageElement;
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const lightboxCounter = document.getElementById("lightbox-counter");
+    const closeBtn = document.getElementById("close-lightbox");
+    const prevBtn = document.getElementById("prev-lightbox");
+    const nextBtn = document.getElementById("next-lightbox");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    let currentIndex = 0;
+    const images = Array.from(galleryItems).map((item) => ({
+        src: item.getAttribute("data-src"),
+        alt: item.getAttribute("data-alt"),
+    }));
+
+    function updateLightbox(index: number) {
+        const img = images[index];
+        if (img && lightboxImg) {
+            // Smoothly swap src
+            lightboxImg.style.opacity = "0";
+            setTimeout(() => {
+                lightboxImg.src = img.src || "";
+                lightboxImg.alt = img.alt || "";
+                if (lightboxCaption)
+                    lightboxCaption.textContent = img.alt || "";
+                if (lightboxCounter)
+                    lightboxCounter.textContent = `${index + 1} / ${images.length}`;
+                lightboxImg.style.opacity = "1";
+            }, 100);
+            currentIndex = index;
+        }
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateLightbox(currentIndex);
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateLightbox(currentIndex);
+    }
+
+    galleryItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+            updateLightbox(index);
+            lightbox.showModal();
+        });
+    });
+
+    closeBtn?.addEventListener("click", () => {
+        lightbox.close();
+    });
+
+    nextBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showNext();
+    });
+
+    prevBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showPrev();
+    });
+
+    // Keyboard support
+    window.addEventListener("keydown", (e) => {
+        if (!lightbox.open) return;
+
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "Escape") {
+            lightbox.close();
+        }
+    });
+
+    // Close on backdrop click (the dialog background itself)
+    lightbox?.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+            lightbox.close();
+        }
+    });
+</script>

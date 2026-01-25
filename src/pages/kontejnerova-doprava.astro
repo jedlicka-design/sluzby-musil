@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CtaSection from "../components/CtaSection.astro";
 import Hero from "../components/Hero.astro";
 import SpecsBox from "../components/SpecsBox.astro";
+import Gallery from "../components/Gallery.astro";
 import { url } from "../utils/urls";
 
 const specs = [
@@ -166,28 +167,7 @@ const galleryImages = [
     </section>
 
     <!-- Gallery Section -->
-    <section class="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {
-                    galleryImages.map((img) => (
-                        <div class="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] bg-slate-200">
-                            <img
-                                src={url(img.src)}
-                                alt={img.alt}
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                <p class="text-white font-bold text-lg">
-                                    {img.alt}
-                                </p>
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    </section>
+    <Gallery images={galleryImages} />
 
     <!-- CTA Section -->
     <CtaSection />

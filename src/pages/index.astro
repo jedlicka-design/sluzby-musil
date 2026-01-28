@@ -10,24 +10,8 @@ const services = [
 		description:
 			"Výroba a prodej certifikovaného zahradního kompostu a substrátů. Ekologická likvidace bioodpadu.",
 		href: "/kompostarna-krhov",
-		image: "/images/kompostarna-hero.webp",
+		image: "/images/kompostarna/hero.webp",
 		color: "bg-green-600",
-	},
-	{
-		title: "Kontejnerová doprava",
-		description:
-			"Odvoz sutí, odpadů a dovoz sypkých materiálů vozem Tatra Phoenix 6x6 s nosností až 14 tun.",
-		href: "/kontejnerova-doprava",
-		image: "/images/kontejnerova-doprava-hero.jpg",
-		color: "bg-amber-600",
-	},
-	{
-		title: "Výkopové práce",
-		description:
-			"Zemní a výkopové práce moderním minibagrem. Ideální pro základy staveb, bazény nebo přípojky.",
-		href: "/vykopove-prace",
-		image: "/images/excavator-hero.jpg",
-		color: "bg-slate-800",
 	},
 	{
 		title: "Drcení biomasy",
@@ -37,14 +21,41 @@ const services = [
 		image: "/images/drceni-biomasy/4.jpg",
 		color: "bg-amber-500",
 	},
+	{
+		title: "Kontejnerová doprava",
+		description:
+			"Odvoz sutí, odpadů a dovoz sypkých materiálů vozem Tatra Phoenix 6x6 s nosností až 14 tun.",
+		href: "/kontejnerova-doprava",
+		image: "/images/kontejnerova-doprava/hero.jpg",
+		color: "bg-amber-600",
+	},
+	{
+		title: "Výkopové práce",
+		description:
+			"Zemní a výkopové práce moderním minibagrem. Ideální pro základy staveb, bazény nebo přípojky.",
+		href: "/vykopove-prace",
+		image: "/images/vykopove-prace/hero.jpg",
+		color: "bg-slate-800",
+	},
+	{
+		title: "Třídění zeminy a kompostu",
+		description:
+			"Profesionální třídění biomasy, zeminy a kompostu výkonným bubnovým třídičem Komptech.",
+		href: "/trideni-zeminy",
+		image: "/images/trideni-zeminy/hero.jpg",
+		color: "bg-amber-400",
+	},
 ];
+
+const featuredServices = services.slice(0, 2);
+const otherServices = services.slice(2);
 ---
 
 <BaseLayout
 	title="Jan Musil - Služby | Profesionální služby v oblasti dopravy a odpadů"
 	fullWidth={true}
 >
-	<!-- Simple Hero Section (Experiment) -->
+	<!-- Simple Hero Section -->
 	<section class="relative bg-amber-100 pt-8 pb-24 md:pt-12 md:pb-40 overflow-hidden border-b border-amber-200">
 		<div class="container mx-auto px-4 relative z-10 text-center">
 			<h1 class="text-4xl md:text-7xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
@@ -53,9 +64,10 @@ const services = [
 			</h1>
 		</div>
 
-		<div class="w-full px-4 md:px-8 mt-16 relative z-10 max-w-[1400px] mx-auto">
+		<div class="w-full px-4 md:px-8 mt-16 relative z-10 max-w-[1400px] mx-auto space-y-6">
+			<!-- Featured Top Row (2 columns) -->
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-				{services.map((service) => (
+				{featuredServices.map((service) => (
 					<a 
 						href={url(service.href)}
 						class="group relative h-48 md:h-80 rounded-3xl overflow-hidden shadow-xl transition-all hover:scale-[1.02] bg-white border border-amber-200"
@@ -76,6 +88,34 @@ const services = [
 							<div class="flex items-center gap-2 text-white/90 group-hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">
 								Zjistit více
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+								</svg>
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+
+			<!-- Secondary Bottom Row (3 columns) -->
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+				{otherServices.map((service) => (
+					<a 
+						href={url(service.href)}
+						class="group relative h-48 md:h-64 rounded-3xl overflow-hidden shadow-lg transition-all hover:scale-[1.02] bg-white border border-amber-200"
+					>
+						<img 
+							src={url(service.image)} 
+							alt={service.title} 
+							class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+						/>
+						<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent group-hover:from-amber-600/70 transition-colors duration-500"></div>
+						
+						<div class="absolute inset-0 p-6 flex flex-col justify-end text-left">
+							<span class={`inline-block w-8 h-1 mb-3 rounded-full transition-all duration-500 group-hover:w-16 ${service.color}`}></span>
+							<h3 class="text-xl font-bold text-white mb-1 transform transition-transform group-hover:-translate-y-1">{service.title}</h3>
+							<div class="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors text-[10px] font-bold uppercase tracking-widest">
+								Zjistit více
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
 								</svg>
 							</div>

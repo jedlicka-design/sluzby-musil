@@ -179,14 +179,19 @@ const galleryImages = [
             <div
                 class="max-w-5xl mx-auto aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black"
             >
-                <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/k_NtwyngxLg"
-                    title="Komptech MAXX 518 v akci"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
+                <video
+                    class="w-full h-full object-cover"
+                    controls
+                    loop
+                    muted
+                    playsinline
+                >
+                    <source
+                        src={url("/images/trideni-zeminy/trideni-zeminy.mp4")}
+                        type="video/mp4"
+                    />
+                    Vaše prohlížeč nepodporuje přehrávání videa.
+                </video>
             </div>
         </div>
     </section>

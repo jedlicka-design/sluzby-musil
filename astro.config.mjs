@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: import.meta.env.PROD
-    ? 'https://jedlicka-design.github.io'
+    ? 'https://www.sluzby-musil.cz'
     : undefined,
 
   base: import.meta.env.PROD

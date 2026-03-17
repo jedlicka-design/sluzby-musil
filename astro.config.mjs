@@ -9,7 +9,7 @@ export default defineConfig({
     : undefined,
 
   base: import.meta.env.PROD
-    ? '/sluzby-musil'
+    ? ''
     : undefined,
 
   vite: {

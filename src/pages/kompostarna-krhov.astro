@@ -6,6 +6,21 @@ import Map from "../components/Map.astro";
 import { url } from "../utils/urls";
 import { CONTACT_INFO } from "../constants/contact";
 
+const mulchProducts = [
+    {
+        name: "Štěpka",
+        description: "Dřevní štěpka pro mulčování kolem stromů a keřů i úpravu zahradních ploch.",
+        image: "/images/kompostarna/stepka-detail.webp",
+        alt: "Detail přírodní dřevní štěpky – ilustrační obrázek",
+    },
+    {
+        name: "Kůra",
+        description: "Přírodní kůra pro zakrytí půdy v okrasných záhonech a kolem dřevin.",
+        image: "/images/kompostarna/kura-detail.webp",
+        alt: "Detail přírodní mulčovací kůry – ilustrační obrázek",
+    },
+];
+
 const wasteCatalogue = [
     { code: "02 01 01", name: "Kaly z praní a z čištění" },
     { code: "02 01 03", name: "Odpad rostlinných pletiv" },
@@ -306,7 +321,7 @@ const compostAnalysis = [
                                 >
                                     <span
                                         class="text-amber-600 font-extrabold text-2xl"
-                                        >800 Kč/m³</span
+                                        >900 Kč/m³</span
                                     >
                                     <span
                                         class="block text-[10px] text-slate-400 font-normal uppercase"
@@ -355,6 +370,88 @@ const compostAnalysis = [
                         </div>
                     </div>
                 </div>
+
+                <div class="pt-8">
+                    <hr class="border-slate-100" />
+                </div>
+
+                <!-- Štěpka a kůra -->
+                <section
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center scroll-mt-24 md:scroll-mt-32"
+                    id="stepka-a-kura"
+                    aria-labelledby="mulch-title"
+                >
+                    <div class="space-y-8">
+                        <h2
+                            id="mulch-title"
+                            class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+                        >
+                            Přírodní štěpka <br />a kůra
+                        </h2>
+                        <p class="text-lg text-slate-600 leading-relaxed">
+                            Doplňte svou zahradu přírodními materiály. Štěpka
+                            a kůra se hodí k zakrytí půdy kolem stromů, keřů
+                            i v okrasných záhonech. Mulčovací vrstva pomáhá
+                            udržet vláhu, omezuje růst plevele a dodává
+                            výsadbě upravený vzhled.
+                        </p>
+                        <div class="bg-amber-50 rounded-xl p-4 border border-amber-100">
+                            <h3 class="font-bold text-slate-900 text-sm">
+                                Domluvte si odběr
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-tight mt-1">
+                                Zavolejte nám a společně domluvíme potřebné
+                                množství, aktuální dostupnost i termín odběru.
+                            </p>
+                        </div>
+                        <div class="pt-4 flex flex-wrap gap-4">
+                            <a
+                                href={url("/kontakt")}
+                                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 px-8 rounded-lg transition-all hover:scale-105 uppercase tracking-wider text-sm shadow-md"
+                            >
+                                Poptat
+                            </a>
+                            <a
+                                href={`tel:${CONTACT_INFO.phonePlain}`}
+                                class="inline-block bg-white border-2 border-slate-200 hover:border-slate-900 text-slate-700 hover:text-slate-900 font-bold py-3 px-8 rounded-lg transition-all hover:scale-105 uppercase tracking-wider text-sm"
+                            >
+                                Volejte {CONTACT_INFO.phone}
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            {mulchProducts.map((product) => (
+                                <article class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col group">
+                                    <div class="h-48 overflow-hidden relative">
+                                        <img
+                                            src={url(product.image)}
+                                            alt={product.alt}
+                                            width="800"
+                                            height="800"
+                                            loading="lazy"
+                                            decoding="async"
+                                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="p-6 flex-grow flex flex-col">
+                                        <h3 class="text-xl font-bold text-slate-900 mb-1 uppercase tracking-wide">
+                                            {product.name}
+                                        </h3>
+                                        <p class="text-slate-500 text-sm mb-4">
+                                            {product.description}
+                                        </p>
+                                        <div class="mt-auto pt-4 border-t border-slate-200">
+                                            <span class="text-amber-600 font-extrabold text-2xl">900 Kč/m³</span>
+                                            <span class="block text-[10px] text-slate-400 font-normal uppercase">+ 21% DPH</span>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3">Obrázky jsou ilustrační.</p>
+                    </div>
+                </section>
 
                 <div class="pt-8">
                     <hr class="border-slate-100" />
